@@ -3,14 +3,29 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>coolorwheel</title>
+  <title>colorwheel</title>
+  <style type="text/css">
+  canvas {
+    cursor: crosshair;
+  }
+  
+  .colorPicker {
+    width: 100px;
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid #333;
+    text-align: center;
+  }
+  </style>
 </head>
 
 <body>
-  <canvas id="panel" width="600" height="600"></canvas>
+  <canvas id="panel"></canvas>
+  <div id="hex" class="colorPicker"></div>
+  <script type="text/javascript" src="./colorwheel/event.js"></script>
   <script type="text/javascript">
   'use strict';
-  var el = document.getElementById('panel'),
+  var el = document.querySelector('#panel'),
     context = el.getContext('2d'),
     width = el.width,
     height = el.height,
@@ -19,21 +34,22 @@
     i = 0,
     x, y, rx, ry,
     rgbR, rgbG, rgbB;
+  var width = 256;
+  var height = 256;
 
   el.width = width;
   el.height = height;
+
   imageData = context.createImageData(width, height);
   pixels = imageData.data;
 
   for (y = 0; y < height; y++) {
     for (x = 0; x < width; x++, i += 4) {
-      rx = x / width;
-      ry = y / height;
+      rx = x / (width - 1);
+      ry = y / (height - 1);
       rgbR = 255 * rx;
       rgbG = 255 * ry;
       rgbB = 255 * (1 - rx);
-
-      // console.log(rgbR, rgbG, rgbB);
 
       pixels[i] = rgbR;
       pixels[i + 1] = rgbG;
@@ -46,6 +62,12 @@
   context.putImageData(imageData, 0, 0);
   document.body.style.backgroundColor = 'white';
   document.body.style.margin = '0px';
+
+  var hexPicker = document.querySelector('#hex');
+  canvasMove('#panel', function(data) {
+    hexPicker.style.backgroundColor = data.hex;
+    hexPicker.innerHTML = data.hex.toUpperCase();
+  })
   </script>
 </body>
 
