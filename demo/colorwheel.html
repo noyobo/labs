@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>coolorwheel</title>
+</head>
+
+<body>
+  <canvas id="panel" width="600" height="600"></canvas>
+  <script type="text/javascript">
+  'use strict';
+  var el = document.getElementById('panel'),
+    context = el.getContext('2d'),
+    width = el.width,
+    height = el.height,
+    imageData,
+    pixels,
+    i = 0,
+    x, y, rx, ry,
+    rgbR, rgbG, rgbB;
+
+  el.width = width;
+  el.height = height;
+  imageData = context.createImageData(width, height);
+  pixels = imageData.data;
+
+  for (y = 0; y < height; y++) {
+    for (x = 0; x < width; x++, i += 4) {
+      rx = x / width;
+      ry = y / height;
+      rgbR = 255 * rx;
+      rgbG = 255 * ry;
+      rgbB = 255 * (1 - rx);
+
+      // console.log(rgbR, rgbG, rgbB);
+
+      pixels[i] = rgbR;
+      pixels[i + 1] = rgbG;
+      pixels[i + 2] = rgbB;
+      pixels[i + 3] = 255;
+
+    }
+  }
+
+  context.putImageData(imageData, 0, 0);
+  document.body.style.backgroundColor = 'white';
+  document.body.style.margin = '0px';
+  </script>
+</body>
+
+</html>
