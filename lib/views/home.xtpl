@@ -9,9 +9,9 @@
 <body>
   <h1>codepen</h1>
   <ul>
-    
-    <li><a href="examples/colorwheel.html"> 色板(正方形)</a></li>
-    
+    {{#each(list)}}
+    <li><a href="{{url}}">{{{title}}}</a></li>
+    {{/each}}
   </ul>
 </body>
 
