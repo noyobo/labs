@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "ghpages": "./node_modules/.bin/gulp && npm run deploy",
+    "site": "./node_modules/.bin/gulp",
+    "ghpages": "npm run site && npm run deploy",
     "deploy": "./node_modules/gh-pages-cli/bin/gh-pages -d _site -b gh-pages"
   },
   "repository": {
