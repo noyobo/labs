@@ -55,6 +55,10 @@ gulp.task('del', function(done) {
   })
 })
 
+gulp.task('watch', function(){
+  gulp.watch(['./**/*.md', '!./node_modules/**/*.md', '!README.md'], ['md'])
+})
+
 gulp.task('default', ['del'], function() {
   gulp.start(['md'])
 })
