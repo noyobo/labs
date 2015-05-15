@@ -1,4 +1,11 @@
-# canvas 色板(正方形)
+# canvas color picker 四色相 (蓝 红 青 黄)
+
+```html
+<canvas id="panel"></canvas>
+<div id="hex" class="colorPicker"></div>
+<div id="rgb" class="colorPicker"></div>
+<script type="text/javascript" src="../assets/colorwheel/getCanvasPickerColor.js"></script>
+```
 
 ```css
 canvas {
@@ -6,18 +13,13 @@ canvas {
 }
 
 .colorPicker {
+  color: #fff;
   width: 100px;
   height: 24px;
   line-height: 24px;
   border: 1px solid #333;
   text-align: center;
 }
-```
-
-```html
-<canvas id="panel"></canvas>
-<div id="hex" class="colorPicker"></div>
-<script type="text/javascript" src="../assets/colorwheel/getCanvasPickerColor.js"></script>
 ```
 
 ```js
@@ -62,10 +64,13 @@ document.body.style.backgroundColor = 'white';
 document.body.style.margin = '0px';
 
 var hexPicker = document.querySelector('#hex');
+var rgbPicker = document.querySelector('#rgb');
 
 // 绑定获取面板颜色事件
 getCanvasPickerColor('#panel', function(data) {
   hexPicker.style.backgroundColor = data.hex;
   hexPicker.innerHTML = data.hex.toUpperCase();
+  rgbPicker.style.backgroundColor = data.hex;
+  rgbPicker.innerHTML = [data.rgb.R,data.rgb.G, data.rgb.B].join(',');
 })
 ```

@@ -4,8 +4,8 @@ function getCanvasPickerColor(elem, callback) {
   var canvasElem = document.querySelector(elem);
   var ctx = canvasElem.getContext('2d');
   canvasElem.addEventListener('mousemove', function(event) {
-    var canvasX = event.pageX || event.offsetX;
-    var canvasY = event.pageY || event.offsetY;
+    var canvasX = event.layerX;
+    var canvasY = event.layerY;
     // get current pixel
     var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
     var pixel = imageData.data;
