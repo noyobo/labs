@@ -25,7 +25,7 @@ var mdToHtml = map(function(file, done) {
   return done(null, file)
 })
 
-gulp.task('md', ['assets'], function() {
+gulp.task('md', function() {
   return gulp
     .src(['./**/*.md', '!./node_modules/**/*.md', '!README.md'])
     .pipe(mdToHtml)
@@ -55,10 +55,10 @@ gulp.task('del', function(done) {
   })
 })
 
-gulp.task('watch', function(){
+gulp.task('watch', function() {
   gulp.watch(['./**/*.md', '!./node_modules/**/*.md', '!README.md'], ['md'])
 })
 
 gulp.task('default', ['del'], function() {
-  gulp.start(['md'])
+  gulp.start(['md', 'assets'])
 })

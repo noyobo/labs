@@ -11,9 +11,12 @@ function getCanvasPickerColor(elem, callback) {
     var pixel = imageData.data;
     var rgb = toRGB(pixel);
     var hex = rgbToHex(rgb);
+    var crgb = complimentaryColor(rgb)
     callback && callback({
       rgb: rgb,
-      hex: hex
+      hex: hex,
+      crgb: crgb,
+      chex: rgbToHex(crgb)
     })
   })
 }
@@ -42,4 +45,12 @@ function toHex(n) {
   if (isNaN(n)) return "00";
   n = Math.max(0, Math.min(n, 255));
   return "0123456789ABCDEF".charAt((n - n % 16) / 16) + "0123456789ABCDEF".charAt(n % 16);
+}
+
+function complimentaryColor(rgb) {
+  return {
+    R: 255 - rgb.R,
+    G: 255 - rgb.G,
+    B: 255 - rgb.B
+  }
 }
