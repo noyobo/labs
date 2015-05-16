@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title> canvas color picker 色条 (6色相)</title>
+  <link rel="stylesheet" type="text/css" href="../assets/bootstrap.min.css">
+  <style>
+  body {
+    font-family: "Microsoft Yahei";
+  }
+  .main-body {
+    padding-top: 15px;
+    min-height: 760px;
+  }
+  .main-body img {
+    padding: 8px;
+    border: 1px solid #CCC;
+    box-shadow: 0px 0px 18px #CCC;
+    border-radius: 6px;
+  }
+  .main-body table {
+    min-width: 600px;
+  }
+  .main-body table tr:hover {
+    background-color: #efefef;
+  }
+  .main-body h1 {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.25em;
+  }
+  .main-body h2 {
+    border-bottom: 1px dashed #e0e0e0;
+    padding-bottom: 0.25em;
+  }
+  .highlight {
+    margin: 1.715em 0
+  }
+
+  .highlight pre {
+    padding: .8em 1em;
+    font: 14px/20x Consolas,Monaco,'Andale Mono',monospace;
+    border: 1px solid #e5e8ec;
+    border-radius: 3px;
+    background-color: #21221d;
+    background-image: -webkit-linear-gradient(#21221d 50%,#272822 50%);
+    background-image: -moz-linear-gradient(#21221d 50%,#272822 50%);
+    background-image: -ms-linear-gradient(#21221d 50%,#272822 50%);
+    background-image: -o-linear-gradient(#21221d 50%,#272822 50%);
+    background-image: linear-gradient(#21221d 50%,#272822 50%);
+    background-size: 40px 40px;
+    background-origin: content-box;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch
+  }
+
+  .highlight pre::-webkit-scrollbar {
+    height: 7px
+  }
+
+  .highlight pre::-webkit-scrollbar-thumb {
+    background: #e5e8ec;
+    border-radius: 99px
+  }
+
+  .highlight pre::-webkit-scrollbar-thumb:hover {
+    background: #d6dbe1
+  }
+
+  .highlight pre>code {
+    font-family: inherit;
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    vertical-align: 2px;
+    display: block;
+    -moz-tab-size: 2;
+    -o-tab-size: 2;
+    tab-size: 2;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+    color: #E5E5C2
+  }
+  pre{
+    position: relative;
+  }
+  pre > .code-type{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 2px 4px;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom-left-radius: 5px;
+  }
+  /*
+  Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
+  */
+
+  .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    background: #23241f;
+    -webkit-text-size-adjust: none;
+  }
+
+  .hljs,
+  .hljs-tag,
+  .css .hljs-rules,
+  .css .hljs-value,
+  .css .hljs-function
+  .hljs-preprocessor,
+  .hljs-pragma {
+    color: #f8f8f2;
+  }
+
+  .hljs-strongemphasis,
+  .hljs-strong,
+  .hljs-emphasis {
+    color: #a8a8a2;
+  }
+
+  .hljs-bullet,
+  .hljs-blockquote,
+  .hljs-horizontal_rule,
+  .hljs-number,
+  .hljs-regexp,
+  .alias .hljs-keyword,
+  .hljs-literal,
+  .hljs-hexcolor {
+    color: #ae81ff;
+  }
+
+  .hljs-tag .hljs-value,
+  .hljs-code,
+  .hljs-title,
+  .css .hljs-class,
+  .hljs-class .hljs-title:last-child {
+    color: #a6e22e;
+  }
+
+  .hljs-link_url {
+    font-size: 80%;
+  }
+
+  .hljs-strong,
+  .hljs-strongemphasis {
+    font-weight: bold;
+  }
+
+  .hljs-emphasis,
+  .hljs-strongemphasis,
+  .hljs-class .hljs-title:last-child {
+    font-style: italic;
+  }
+
+  .hljs-keyword,
+  .hljs-function,
+  .hljs-change,
+  .hljs-winutils,
+  .hljs-flow,
+  .nginx .hljs-title,
+  .tex .hljs-special,
+  .hljs-header,
+  .hljs-attribute,
+  .hljs-symbol,
+  .hljs-symbol .hljs-string,
+  .hljs-tag .hljs-title,
+  .hljs-value,
+  .alias .hljs-keyword:first-child,
+  .css .hljs-tag,
+  .css .unit,
+  .css .hljs-important {
+    color: #f92672;
+  }
+
+  .hljs-function .hljs-keyword,
+  .hljs-class .hljs-keyword:first-child,
+  .hljs-constant,
+  .css .hljs-attribute {
+    color: #66d9ef;
+  }
+
+  .hljs-variable,
+  .hljs-params,
+  .hljs-class .hljs-title {
+    color: #f8f8f2;
+  }
+
+  .hljs-string,
+  .css .hljs-id,
+  .hljs-subst,
+  .hljs-type,
+  .ruby .hljs-class .hljs-parent,
+  .hljs-built_in,
+  .django .hljs-template_tag,
+  .django .hljs-variable,
+  .smalltalk .hljs-class,
+  .django .hljs-filter .hljs-argument,
+  .smalltalk .hljs-localvars,
+  .smalltalk .hljs-array,
+  .hljs-attr_selector,
+  .hljs-pseudo,
+  .hljs-addition,
+  .hljs-stream,
+  .hljs-envvar,
+  .apache .hljs-tag,
+  .apache .hljs-cbracket,
+  .tex .hljs-command,
+  .hljs-prompt,
+  .hljs-link_label,
+  .hljs-link_url {
+    color: #e6db74;
+  }
+
+  .hljs-comment,
+  .hljs-javadoc,
+  .hljs-annotation,
+  .hljs-decorator,
+  .hljs-template_comment,
+  .hljs-pi,
+  .hljs-doctype,
+  .hljs-deletion,
+  .hljs-shebang,
+  .apache .hljs-sqbracket,
+  .tex .hljs-formula {
+    color: #75715e;
+  }
+
+  .coffeescript .javascript,
+  .javascript .xml,
+  .tex .hljs-formula,
+  .xml .javascript,
+  .xml .vbscript,
+  .xml .css,
+  .xml .hljs-cdata,
+  .xml .php,
+  .php .xml {
+    opacity: 0.5;
+  }
+
+  h1 a.anchor,
+  h2 a.anchor,
+  h3 a.anchor,
+  h4 a.anchor,
+  h5 a.anchor,
+  h6 a.anchor {
+    display: none;
+    padding-left: 10px;
+  }
+  h1:hover a.anchor,
+  h2:hover a.anchor,
+  h3:hover a.anchor,
+  h4:hover a.anchor,
+  h5:hover a.anchor,
+  h6:hover a.anchor {
+    display: inline;
+  }
+  </style>
+</head>
+<body>
+  <div class="main-body container-fluid">
+  <h1>canvas color picker 色条 (6色相)<a name="canvas-color-picker-se-tiao-6-se-xiang" class="anchor" href="#canvas-color-picker-se-tiao-6-se-xiang"><span class="header-link">#</span></a></h1><div>
+  <div class="canvas-warp"><canvas id="panel"></canvas></div>
+</div>
+<div class="clearfix"></div>
+<br/>
+<div id="hex" class="colorPicker"></div>
+<div id="rgb" class="colorPicker"></div>
+<script type="text/javascript" src="../assets/colorwheel/getCanvasPickerColor.js"></script><div class="highlight"><pre class="hljs"><span class="code-type">html</span><code class="html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"canvas-warp"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">canvas</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"panel"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">canvas</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"clearfix"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">br</span>/&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"hex"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"colorPicker"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"rgb"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"colorPicker"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"../assets/colorwheel/getCanvasPickerColor.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></code></pre></div><style>canvas {cursor: crosshair;}
+.canvas-warp {border: 2px solid #000; float:left; font-size:0; border-radius:2px;}
+.colorPicker {
+  color: #fff;
+  width: 100px;
+  height: 24px;
+  line-height: 24px;
+  border: 1px solid #333;
+  text-align: center;
+}</style><div class="highlight"><pre class="hljs"><span class="code-type">css</span><code class="css"><span class="hljs-tag">canvas</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">cursor</span>:<span class="hljs-value"> crosshair</span></span>;}</span>
+<span class="hljs-class">.canvas-warp</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">2px</span> solid <span class="hljs-hexcolor">#000</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value">left</span></span>; <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">border-radius</span>:<span class="hljs-value"><span class="hljs-number">2px</span></span></span>;}</span>
+<span class="hljs-class">.colorPicker</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#fff</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">24px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">line-height</span>:<span class="hljs-value"> <span class="hljs-number">24px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#333</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> center</span></span>;
+}</span></code></pre></div><script>'use strict';
+var el = document.querySelector('#panel');
+var context = el.getContext('2d');
+var width = el.width;
+var height = el.height;
+var imageData;
+var pixels;
+var i = 0;
+var x, y;
+var R, G, B;
+var width = 360;
+var height = 100;
+
+var sat, lightness, pos, w, v, l, increase, reduce;
+var satRange = width / 6;
+el.width = width;
+el.height = height;
+
+imageData = context.createImageData(width, height);
+pixels = imageData.data;
+
+for (y = 0; y < height; y++) {
+  for (x = 0; x < width; x++, i += 4) {
+    lightness =  y / height          // 亮度
+    sat = (x % satRange) / satRange  // 饱和度 0~1
+    pos = Math.floor(x / satRange)   // 色相区域
+
+    w = 255 * sat               // 颜色加深
+    v = 255 * (1 - sat)         // 颜色变浅
+    l = 255 * lightness
+
+    increase = v * lightness // 加色
+    reduce = w * lightness   // 减色
+
+    w = w + increase
+    v = v + reduce
+
+    R = [255, v,   l,   l,   w,   255][pos]
+    G = [l,   l,   w,   255, 255, v  ][pos]
+    B = [w,   255, 255, v,   l,   l  ][pos]
+
+    pixels[i] = R
+    pixels[i + 1] = G
+    pixels[i + 2] = B
+    pixels[i + 3] = 255
+
+  }
+}
+
+context.putImageData(imageData, 0, 0);
+document.body.style.backgroundColor = 'white';
+document.body.style.margin = '0px';
+
+var hexPicker = document.querySelector('#hex');
+var rgbPicker = document.querySelector('#rgb');
+
+// 绑定获取面板颜色事件
+getCanvasPickerColor('#panel', function(data) {
+  hexPicker.style.backgroundColor = data.hex;
+  hexPicker.style.color = data.chex;
+  hexPicker.innerHTML = data.hex.toUpperCase();
+  rgbPicker.style.backgroundColor = data.hex;
+  rgbPicker.style.color = data.chex;
+  rgbPicker.innerHTML = [data.rgb.R,data.rgb.G, data.rgb.B].join(',');
+})</script><div class="highlight"><pre class="hljs"><span class="code-type">js</span><code class="js"><span class="hljs-pi">'use strict'</span>;
+<span class="hljs-keyword">var</span> el = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#panel'</span>);
+<span class="hljs-keyword">var</span> context = el.getContext(<span class="hljs-string">'2d'</span>);
+<span class="hljs-keyword">var</span> width = el.width;
+<span class="hljs-keyword">var</span> height = el.height;
+<span class="hljs-keyword">var</span> imageData;
+<span class="hljs-keyword">var</span> pixels;
+<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">var</span> x, y;
+<span class="hljs-keyword">var</span> R, G, B;
+<span class="hljs-keyword">var</span> width = <span class="hljs-number">360</span>;
+<span class="hljs-keyword">var</span> height = <span class="hljs-number">100</span>;
+
+<span class="hljs-keyword">var</span> sat, lightness, pos, w, v, l, increase, reduce;
+<span class="hljs-keyword">var</span> satRange = width / <span class="hljs-number">6</span>;
+el.width = width;
+el.height = height;
+
+imageData = context.createImageData(width, height);
+pixels = imageData.data;
+
+<span class="hljs-keyword">for</span> (y = <span class="hljs-number">0</span>; y &lt; height; y++) {
+  <span class="hljs-keyword">for</span> (x = <span class="hljs-number">0</span>; x &lt; width; x++, i += <span class="hljs-number">4</span>) {
+    lightness =  y / height          <span class="hljs-comment">// 亮度</span>
+    sat = (x % satRange) / satRange  <span class="hljs-comment">// 饱和度 0~1</span>
+    pos = <span class="hljs-built_in">Math</span>.floor(x / satRange)   <span class="hljs-comment">// 色相区域</span>
+
+    w = <span class="hljs-number">255</span> * sat               <span class="hljs-comment">// 颜色加深</span>
+    v = <span class="hljs-number">255</span> * (<span class="hljs-number">1</span> - sat)         <span class="hljs-comment">// 颜色变浅</span>
+    l = <span class="hljs-number">255</span> * lightness
+
+    increase = v * lightness <span class="hljs-comment">// 加色</span>
+    reduce = w * lightness   <span class="hljs-comment">// 减色</span>
+
+    w = w + increase
+    v = v + reduce
+
+    R = [<span class="hljs-number">255</span>, v,   l,   l,   w,   <span class="hljs-number">255</span>][pos]
+    G = [l,   l,   w,   <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, v  ][pos]
+    B = [w,   <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, v,   l,   l  ][pos]
+
+    pixels[i] = R
+    pixels[i + <span class="hljs-number">1</span>] = G
+    pixels[i + <span class="hljs-number">2</span>] = B
+    pixels[i + <span class="hljs-number">3</span>] = <span class="hljs-number">255</span>
+
+  }
+}
+
+context.putImageData(imageData, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+<span class="hljs-built_in">document</span>.body.style.backgroundColor = <span class="hljs-string">'white'</span>;
+<span class="hljs-built_in">document</span>.body.style.margin = <span class="hljs-string">'0px'</span>;
+
+<span class="hljs-keyword">var</span> hexPicker = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#hex'</span>);
+<span class="hljs-keyword">var</span> rgbPicker = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#rgb'</span>);
+
+<span class="hljs-comment">// 绑定获取面板颜色事件</span>
+getCanvasPickerColor(<span class="hljs-string">'#panel'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> </span>{
+  hexPicker.style.backgroundColor = data.hex;
+  hexPicker.style.color = data.chex;
+  hexPicker.innerHTML = data.hex.toUpperCase();
+  rgbPicker.style.backgroundColor = data.hex;
+  rgbPicker.style.color = data.chex;
+  rgbPicker.innerHTML = [data.rgb.R,data.rgb.G, data.rgb.B].join(<span class="hljs-string">','</span>);
+})</code></pre></div>
+  </div>
+</body>
+</html>
