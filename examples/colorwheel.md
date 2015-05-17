@@ -60,8 +60,6 @@ for (y = 0; y < height; y++) {
 }
 
 context.putImageData(imageData, 0, 0);
-document.body.style.backgroundColor = 'white';
-document.body.style.margin = '0px';
 
 var hexPicker = document.querySelector('#hex');
 var rgbPicker = document.querySelector('#rgb');

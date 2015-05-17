@@ -57,7 +57,7 @@ for (y = 0; y < height; y++) {
     l = 255 * lightness
 
     increase = v * lightness // 加色
-    reduce = w * lightness   // 减色
+    reduce   = w * lightness   // 减色
 
     w = w + increase
     v = v + reduce
@@ -75,8 +75,6 @@ for (y = 0; y < height; y++) {
 }
 
 context.putImageData(imageData, 0, 0);
-document.body.style.backgroundColor = 'white';
-document.body.style.margin = '0px';
 
 var hexPicker = document.querySelector('#hex');
 var rgbPicker = document.querySelector('#rgb');
