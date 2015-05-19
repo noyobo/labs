@@ -5,24 +5,26 @@
 ```
 
 ```js
-var body = document.querySelector('body')
-var out = document.querySelector('.out')
-body.addEventListener('keydown', function(event){
+const body = document.querySelector('body')
+const out = document.querySelector('.out')
+
+const keyArr = ['metaKey', 'altKey', 'ctrlKey', 'shiftKey'];
+
+body.addEventListener('keydown', (event) => {
   event.preventDefault()
 
-  var keyArr = ['metaKey', 'altKey', 'ctrlKey', 'shiftKey']
-  var keyCombo = []
-  keyArr.forEach(function(key){
+  let keyCombo = []
+
+  keyArr.forEach(key => {
     if(event[key] === true){
       keyCombo.push('<code>' + key.substr(0, key.length - 3) + '</code>')
     }
   })
 
-  var keyCode = event.which || event.keyCode
+  let keyCode = event.which || event.keyCode
 
   keyCombo.push('<code>' + String.fromCharCode(keyCode) + '('+ keyCode + ')' + '</code>')
 
   out.innerHTML = keyCombo.join(' + ')
-
 })
 ```
