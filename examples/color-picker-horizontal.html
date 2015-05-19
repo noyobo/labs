@@ -7,6 +7,7 @@
   <style>
   body {
     font-family: "Microsoft Yahei";
+    background-color: #FBFBFB;
   }
   .main-body {
     padding-top: 15px;
@@ -327,7 +328,7 @@ for (y = 0; y < height; y++) {
     l = 255 * lightness
 
     increase = v * lightness // 加色
-    reduce = w * lightness   // 减色
+    reduce   = w * lightness   // 减色
 
     w = w + increase
     v = v + reduce
@@ -345,8 +346,6 @@ for (y = 0; y < height; y++) {
 }
 
 context.putImageData(imageData, 0, 0);
-document.body.style.backgroundColor = 'white';
-document.body.style.margin = '0px';
 
 var hexPicker = document.querySelector('#hex');
 var rgbPicker = document.querySelector('#rgb');
@@ -391,7 +390,7 @@ pixels = imageData.data;
     l = <span class="hljs-number">255</span> * lightness
 
     increase = v * lightness <span class="hljs-comment">// 加色</span>
-    reduce = w * lightness   <span class="hljs-comment">// 减色</span>
+    reduce   = w * lightness   <span class="hljs-comment">// 减色</span>
 
     w = w + increase
     v = v + reduce
@@ -409,8 +408,6 @@ pixels = imageData.data;
 }
 
 context.putImageData(imageData, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
-<span class="hljs-built_in">document</span>.body.style.backgroundColor = <span class="hljs-string">'white'</span>;
-<span class="hljs-built_in">document</span>.body.style.margin = <span class="hljs-string">'0px'</span>;
 
 <span class="hljs-keyword">var</span> hexPicker = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#hex'</span>);
 <span class="hljs-keyword">var</span> rgbPicker = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#rgb'</span>);
