@@ -165,8 +165,8 @@ pixels = imageData.data;
 
 context.putImageData(imageData, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
 
-<span class="hljs-keyword">var</span> hexPicker = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#hex'</span>);
-<span class="hljs-keyword">var</span> rgbPicker = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#rgb'</span>);
+<span class="hljs-keyword">const</span> hexPicker = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#hex'</span>);
+<span class="hljs-keyword">const</span> rgbPicker = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#rgb'</span>);
 
 <span class="hljs-comment">// 绑定获取面板颜色事件</span>
 getCanvasPickerColor(<span class="hljs-string">'#panel'</span>, data =&gt; {
