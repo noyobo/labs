@@ -1,0 +1,109 @@
+body {
+  font-family: "Microsoft Yahei";
+  background-color: #FBFBFB;
+}
+.main-body {
+  padding-top: 15px;
+  min-height: 760px;
+}
+.main-body img {
+  padding: 8px;
+  border: 1px solid #CCC;
+  box-shadow: 0px 0px 18px #CCC;
+  border-radius: 6px;
+}
+.main-body table {
+  min-width: 600px;
+}
+.main-body table tr:hover {
+  background-color: #efefef;
+}
+.main-body h1 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.25em;
+}
+.main-body h2 {
+  border-bottom: 1px dashed #e0e0e0;
+  padding-bottom: 0.25em;
+}
+.highlight {
+  margin: 1.715em 0
+}
+
+.highlight pre {
+  padding: .8em 1em;
+  font: 14px/20px Consolas,Monaco,'Andale Mono',monospace;
+  border: 1px solid #e5e8ec;
+  border-radius: 3px;
+  background-color: #21221d;
+  background-image: -webkit-linear-gradient(#21221d 50%,#272822 50%);
+  background-image: -moz-linear-gradient(#21221d 50%,#272822 50%);
+  background-image: -ms-linear-gradient(#21221d 50%,#272822 50%);
+  background-image: -o-linear-gradient(#21221d 50%,#272822 50%);
+  background-image: linear-gradient(#21221d 50%,#272822 50%);
+  background-size: 40px 40px;
+  background-origin: content-box;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch
+}
+
+.highlight pre::-webkit-scrollbar {
+  height: 7px
+}
+
+.highlight pre::-webkit-scrollbar-thumb {
+  background: #e5e8ec;
+  border-radius: 99px
+}
+
+.highlight pre::-webkit-scrollbar-thumb:hover {
+  background: #d6dbe1
+}
+
+.highlight pre>code {
+  font-family: inherit;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  vertical-align: 2px;
+  display: block;
+  -moz-tab-size: 2;
+  -o-tab-size: 2;
+  tab-size: 2;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  color: #E5E5C2
+}
+pre{
+  position: relative;
+}
+pre > .code-type{
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 2px 4px;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-bottom-left-radius: 5px;
+}
+
+h1 a.anchor,
+h2 a.anchor,
+h3 a.anchor,
+h4 a.anchor,
+h5 a.anchor,
+h6 a.anchor {
+  display: none;
+  padding-left: 10px;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+  display: inline;
+}
