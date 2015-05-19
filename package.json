@@ -29,7 +29,6 @@
     "map-stream": "0.0.5",
     "marked": "^0.3.3",
     "pinyin": "^2.3.3",
-    "traceur": "0.0.89",
     "xtemplate": "~4.2.4",
     "xtpl": "~3.1.9"
   }

@@ -26,28 +26,27 @@ canvas {cursor: crosshair;}
 
 ```js
 'use strict';
-var el = document.querySelector('#panel');
-var context = el.getContext('2d');
-var width = el.width;
-var height = el.height;
-var imageData;
-var pixels;
-var i = 0;
-var x, y;
-var R, G, B;
-var width = 360;
-var height = 100;
+const el = document.querySelector('#panel');
+const context = el.getContext('2d');
+const width = 360;
+const height = 100;
 
-var sat, lightness, pos, w, v, l, increase, reduce;
-var satRange = width / 6;
+let imageData;
+let pixels;
+let i = 0;
+let R, G, B;
+
+let sat, lightness, pos, w, v, l, increase, reduce;
+let satRange = width / 6;
+
 el.width = width;
 el.height = height;
 
 imageData = context.createImageData(width, height);
 pixels = imageData.data;
 
-for (y = 0; y < height; y++) {
-  for (x = 0; x < width; x++, i += 4) {
+for (let y = 0; y < height; y++) {
+  for (let x = 0; x < width; x++, i += 4) {
     lightness =  y / height          // 亮度
     sat = (x % satRange) / satRange  // 饱和度 0~1
     pos = Math.floor(x / satRange)   // 色相区域
@@ -70,17 +69,16 @@ for (y = 0; y < height; y++) {
     pixels[i + 1] = G
     pixels[i + 2] = B
     pixels[i + 3] = 255
-
   }
 }
 
 context.putImageData(imageData, 0, 0);
 
-var hexPicker = document.querySelector('#hex');
-var rgbPicker = document.querySelector('#rgb');
+const hexPicker = document.querySelector('#hex');
+const rgbPicker = document.querySelector('#rgb');
 
 // 绑定获取面板颜色事件
-getCanvasPickerColor('#panel', function(data) {
+getCanvasPickerColor('#panel', data => {
   hexPicker.style.backgroundColor = data.hex;
   hexPicker.style.color = data.chex;
   hexPicker.innerHTML = data.hex.toUpperCase();
