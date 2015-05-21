@@ -27,7 +27,8 @@ body {
   padding-bottom: 0.25em;
 }
 .highlight {
-  margin: 1.715em 0
+  margin: 1.715em 0;
+  clear: both;
 }
 
 .highlight pre {
