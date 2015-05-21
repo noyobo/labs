@@ -3,3 +3,6 @@ push:
 
 site:
 	npm run site
+
+watch:
+	gulp watch

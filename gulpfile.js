@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var del = require('del');
 var rename = require('gulp-rename');
 var copy = require('gulp-copy');
+var watch = require('gulp-watch');
 var map = require('map-stream');
 var markdown = require('./lib/markdown.js');
 var render = require('./lib/xtpl.js');
@@ -22,6 +23,7 @@ var mdToHtml = map(function(file, done) {
     title: mdData.title
   })
   file.contents = new Buffer(html);
+  console.log('create html file for:', file.path);
   return done(null, file)
 })
 
@@ -56,7 +58,12 @@ gulp.task('del', function(done) {
 })
 
 gulp.task('watch', function() {
-  gulp.watch(['./**/*.md', '!./node_modules/**/*.md', '!README.md'], ['md'])
+  watch(['./**/*.md', '!./node_modules/**/*.md', '!README.md'])
+    .pipe(mdToHtml)
+    .pipe(rename({
+      extname: '.html'
+    }))
+    .pipe(gulp.dest('./_site'))
 })
 
 gulp.task('default', ['del'], function() {
