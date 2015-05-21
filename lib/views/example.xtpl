@@ -6,6 +6,7 @@
   <link rel="stylesheet" type="text/css" href="../assets/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../assets/example.css">
   <link rel="stylesheet" type="text/css" href="../assets/highlight/monokai_sublime.css">
+  <script src="../smoothie.js"></script>
 </head>
 <body>
   <div class="main-body container-fluid">
