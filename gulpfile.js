@@ -6,6 +6,7 @@ var rename = require('gulp-rename');
 var copy = require('gulp-copy');
 var watch = require('gulp-watch');
 var map = require('map-stream');
+var babel = require('babel-core');
 var markdown = require('./lib/markdown.js');
 var render = require('./lib/xtpl.js');
 
@@ -45,10 +46,25 @@ gulp.task('md', function() {
 
 gulp.task('assets', function() {
   return gulp
-    .src('./assets/**/*.*')
+    .src(['./src/**/*.css'])
     .pipe(copy('./_site', {
-      prefix: 0
+      prefix: 1
     }))
+})
+
+var es6ToEs5 = map(function(file, done) {
+  var code = String(file.contents);
+  var es5 = babel.transform(code).code;
+  file.contents = new Buffer(es5);
+  console.log('create js file for:', file.path);
+  return done(null, file)
+})
+
+gulp.task('js', function() {
+  return gulp
+    .src(['./src/**/*.js'])
+    .pipe(es6ToEs5)
+    .pipe(gulp.dest('./_site/'))
 })
 
 gulp.task('del', function(done) {
@@ -64,8 +80,12 @@ gulp.task('watch', function() {
       extname: '.html'
     }))
     .pipe(gulp.dest('./_site'))
+
+  watch(['./assets/**/*.js'])
+    .pipe(es6ToEs5)
+    .pipe(gulp.dest('./_site/assets/'))
 })
 
 gulp.task('default', ['del'], function() {
-  gulp.start(['md', 'assets'])
+  gulp.start(['md', 'assets', 'js'])
 })

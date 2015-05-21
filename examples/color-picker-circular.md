@@ -1,19 +1,19 @@
-# canvas color picker 色条 (6色相)
+# canvas color picker circular 圆环
 
 ```html
 <div>
-  <div class="canvas-warp"><canvas id="panel"></canvas></div>
+  <canvas id="panel"></canvas>
 </div>
 <div class="clearfix"></div>
 <br/>
 <div id="hex" class="colorPicker"></div>
 <div id="rgb" class="colorPicker"></div>
 <script type="text/javascript" src="../assets/color/getCanvasPickerColor.js"></script>
+<script type="text/javascript" src="../assets/color/colorUtil.js"></script>
 ```
 
 ```css
 canvas {cursor: crosshair;}
-.canvas-warp {border: 2px solid #000; float:left; font-size:0; border-radius:2px;}
 .colorPicker {
   color: #fff;
   width: 100px;
@@ -28,16 +28,18 @@ canvas {cursor: crosshair;}
 'use strict';
 const el = document.querySelector('#panel');
 const context = el.getContext('2d');
-const width = 360;
-const height = 100;
+const radius = 128;
+// 旋转角度
+const rotation = -Math.PI;
+
+const width = radius * 2;
+const height = radius * 2;
 
 let imageData;
 let pixels;
 let i = 0;
 let R, G, B;
 
-let sat, lightness, pos, w, v, l, increase, reduce;
-let satRange = width / 6;
 
 el.width = width;
 el.height = height;
@@ -45,34 +47,31 @@ el.height = height;
 imageData = context.createImageData(width, height);
 pixels = imageData.data;
 
-for (let y = 0; y < height; y++) {
-  for (let x = 0; x < width; x++, i += 4) {
-    lightness =  y / height          // 亮度
-    sat = (x % satRange) / satRange  // 饱和度 0~1
-    pos = Math.floor(x / satRange)   // 色相区域
+for(let xy = 0, area = width * height; xy < area; xy++){
+  let x = Math.floor(xy % width);
+  let y = Math.floor(xy / height);
+  let hue = ColorUtil.hueFromPosition(x, y);
+  let rgb = ColorUtil.rgbFromHsv(hue, 1, 1);
 
-    w = 255 * sat               // 颜色加深
-    v = 255 * (1 - sat)         // 颜色变浅
-    l = 255 * lightness
-
-    increase = v * lightness // 加色
-    reduce   = w * lightness   // 减色
-
-    w = w + increase
-    v = v + reduce
-
-    R = [255, v,   l,   l,   w,   255][pos]
-    G = [l,   l,   w,   255, 255, v  ][pos]
-    B = [w,   255, 255, v,   l,   l  ][pos]
-
-    pixels[i] = R
-    pixels[i + 1] = G
-    pixels[i + 2] = B
-    pixels[i + 3] = 255
-  }
+  pixels[xy * 4 + 0] = rgb.R;
+  pixels[xy * 4 + 1] = rgb.G;
+  pixels[xy * 4 + 2] = rgb.B;
+  pixels[xy * 4 + 3] = 0xFF;
 }
 
 context.putImageData(imageData, 0, 0);
+
+context.save();
+context.globalCompositeOperation = 'destination-in';
+context.fillStyle = 'white';
+context.beginPath();
+context.arc(radius, radius, radius * 1, 0, Math.PI * 2);
+context.fill();
+context.globalCompositeOperation = 'destination-out';
+context.beginPath();
+context.arc(radius, radius, radius * 0.7, 0, Math.PI * 2);
+context.fill();
+context.restore();
 
 const hexPicker = document.querySelector('#hex');
 const rgbPicker = document.querySelector('#rgb');

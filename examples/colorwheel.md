@@ -4,7 +4,7 @@
 <canvas id="panel"></canvas>
 <div id="hex" class="colorPicker"></div>
 <div id="rgb" class="colorPicker"></div>
-<script type="text/javascript" src="../assets/colorwheel/getCanvasPickerColor.js"></script>
+<script type="text/javascript" src="../assets/color/getCanvasPickerColor.js"></script>
 ```
 
 ```css
