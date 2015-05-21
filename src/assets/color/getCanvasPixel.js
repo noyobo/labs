@@ -1,6 +1,6 @@
 'use strict';
 
-function getCanvasPickerColor(elem, callback) {
+function getCanvasPixel(elem, callback) {
   var canvasElem = document.querySelector(elem);
   var ctx = canvasElem.getContext('2d');
   canvasElem.addEventListener('mousemove', function(event) {

@@ -8,8 +8,8 @@
 <br/>
 <div id="hex" class="colorPicker"></div>
 <div id="rgb" class="colorPicker"></div>
-<script type="text/javascript" src="../assets/color/getCanvasPickerColor.js"></script>
 <script type="text/javascript" src="../assets/color/colorUtil.js"></script>
+<script type="text/javascript" src="../assets/color/getCanvasPixel.js"></script>
 ```
 
 ```css
@@ -77,7 +77,7 @@ const hexPicker = document.querySelector('#hex');
 const rgbPicker = document.querySelector('#rgb');
 
 // 绑定获取面板颜色事件
-getCanvasPickerColor('#panel', data => {
+getCanvasPixel('#panel', data => {
   hexPicker.style.backgroundColor = data.hex;
   hexPicker.style.color = data.chex;
   hexPicker.innerHTML = data.hex.toUpperCase();
