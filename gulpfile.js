@@ -9,6 +9,7 @@ var webpack = require('gulp-webpack');
 var named = require('vinyl-named');
 var through2 = require('through2');
 var babel = require('babel-core');
+var colors = require('colors-mini');
 var markdown = require('./lib/markdown.js');
 var render = require('./lib/xtpl.js');
 
@@ -30,7 +31,7 @@ var mdToHtml = through2.obj(function(file, enc, done) {
     title: mdData.data.title
   })
   file.contents = new Buffer(html);
-  console.log('create html file for:', file.path);
+  console.log(colors.green('create html:'), file.path);
   self.push(file)
   while (mdData.jsFiles.length > 0) {
     var jsfile = mdData.jsFiles.pop();
@@ -72,7 +73,7 @@ var es6ToEs5 = through2.obj(function(file, env, done) {
   var code = String(file.contents);
   var es5 = babel.transform(code).code;
   file.contents = new Buffer(es5);
-  console.log('create js file for:', file.path);
+  console.log(colors.green('create js:'), file.path);
   done(null, file)
 })
 
@@ -90,6 +91,7 @@ gulp.task('del', function(done) {
 })
 
 gulp.task('watch', function() {
+
   watch(['./**/*.md', '!./node_modules/**/*.md', '!README.md'])
     .pipe(mdToHtml)
     .pipe(gulp.dest(distDir))

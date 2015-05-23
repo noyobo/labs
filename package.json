@@ -1,7 +1,8 @@
 {
   "name": "labs",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "description": "labs",
   "main": "index.js",
   "scripts": {
     "site": "./node_modules/.bin/gulp",
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/noyobo/labs",
   "devDependencies": {
     "babel-core": "~5.4.3",
+    "colors-mini": "^1.0.2",
     "del": "~1.1.1",
     "gh-pages-cli": "^0.2.0",
     "gulp": "^3.8.11",
