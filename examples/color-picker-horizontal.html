@@ -17,7 +17,7 @@
 <br/>
 <div id="hex" class="colorPicker"></div>
 <div id="rgb" class="colorPicker"></div>
-<script type="text/javascript" src="../assets/color/getCanvasPickerColor.js"></script>
+<script type="text/javascript" src="../assets/color/getCanvasPixel.js"></script>
 <div class="highlight"><pre class="hljs"><span class="code-type">html</span><code class="html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"canvas-warp"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">canvas</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"panel"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">canvas</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
@@ -25,7 +25,7 @@
 <span class="hljs-tag">&lt;<span class="hljs-title">br</span>/&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"hex"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"colorPicker"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"rgb"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"colorPicker"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"../assets/color/getCanvasPickerColor.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></code></pre></div>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"../assets/color/getCanvasPixel.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></code></pre></div>
 <style>canvas {cursor: crosshair;}
 .canvas-warp {border: 2px solid #000; float:left; font-size:0; border-radius:2px;}
 .colorPicker {
@@ -46,76 +46,7 @@
   <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#333</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> center</span></span>;
 }</span></code></pre></div>
-<script>'use strict';
-var el = document.querySelector('#panel');
-var context = el.getContext('2d');
-var width = 360;
-var height = 100;
-
-var imageData = undefined;
-var pixels = undefined;
-var i = 0;
-var R = undefined,
-    G = undefined,
-    B = undefined;
-
-var sat = undefined,
-    lightness = undefined,
-    pos = undefined,
-    w = undefined,
-    v = undefined,
-    l = undefined,
-    increase = undefined,
-    reduce = undefined;
-var satRange = width / 6;
-
-el.width = width;
-el.height = height;
-
-imageData = context.createImageData(width, height);
-pixels = imageData.data;
-
-for (var y = 0; y < height; y++) {
-  for (var x = 0; x < width; x++, i += 4) {
-    lightness = y / height; // 亮度
-    sat = x % satRange / satRange; // 饱和度 0~1
-    pos = Math.floor(x / satRange); // 色相区域
-
-    w = 255 * sat; // 颜色加深
-    v = 255 * (1 - sat); // 颜色变浅
-    l = 255 * lightness;
-
-    increase = v * lightness; // 加色
-    reduce = w * lightness; // 减色
-
-    w = w + increase;
-    v = v + reduce;
-
-    R = [255, v, l, l, w, 255][pos];
-    G = [l, l, w, 255, 255, v][pos];
-    B = [w, 255, 255, v, l, l][pos];
-
-    pixels[i] = R;
-    pixels[i + 1] = G;
-    pixels[i + 2] = B;
-    pixels[i + 3] = 255;
-  }
-}
-
-context.putImageData(imageData, 0, 0);
-
-var hexPicker = document.querySelector('#hex');
-var rgbPicker = document.querySelector('#rgb');
-
-// 绑定获取面板颜色事件
-getCanvasPickerColor('#panel', function (data) {
-  hexPicker.style.backgroundColor = data.hex;
-  hexPicker.style.color = data.chex;
-  hexPicker.innerHTML = data.hex.toUpperCase();
-  rgbPicker.style.backgroundColor = data.hex;
-  rgbPicker.style.color = data.chex;
-  rgbPicker.innerHTML = [data.rgb.R, data.rgb.G, data.rgb.B].join(',');
-});</script>
+<script src="./color-picker-horizontal-f4dff27580.js"></script>
 <div class="highlight"><pre class="hljs"><span class="code-type">js</span><code class="js"><span class="hljs-pi">'use strict'</span>;
 <span class="hljs-keyword">const</span> el = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#panel'</span>);
 <span class="hljs-keyword">const</span> context = el.getContext(<span class="hljs-string">'2d'</span>);
@@ -169,7 +100,7 @@ context.putImageData(imageData, <span class="hljs-number">0</span>, <span class=
 <span class="hljs-keyword">const</span> rgbPicker = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'#rgb'</span>);
 
 <span class="hljs-comment">// 绑定获取面板颜色事件</span>
-getCanvasPickerColor(<span class="hljs-string">'#panel'</span>, data =&gt; {
+getCanvasPixel(<span class="hljs-string">'#panel'</span>, data =&gt; {
   hexPicker.style.backgroundColor = data.hex;
   hexPicker.style.color = data.chex;
   hexPicker.innerHTML = data.hex.toUpperCase();
