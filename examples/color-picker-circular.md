@@ -8,8 +8,6 @@
 <br/>
 <div id="hex" class="colorPicker"></div>
 <div id="rgb" class="colorPicker"></div>
-<script type="text/javascript" src="../assets/color/colorUtil.js"></script>
-<script type="text/javascript" src="../assets/color/getCanvasPixel.js"></script>
 ```
 
 ```css
@@ -40,13 +38,15 @@ let pixels;
 let i = 0;
 let R, G, B;
 
+const ColorUtil = require('../assets/color/colorUtil');
+const getCanvasPixel = require('../assets/color/getCanvasPixel');
+
 
 el.width = width;
 el.height = height;
 
 imageData = context.createImageData(width, height);
 pixels = imageData.data;
-
 for(let xy = 0, area = width * height; xy < area; xy++){
   let x = Math.floor(xy % width);
   let y = Math.floor(xy / height);

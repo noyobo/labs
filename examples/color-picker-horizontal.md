@@ -8,7 +8,6 @@
 <br/>
 <div id="hex" class="colorPicker"></div>
 <div id="rgb" class="colorPicker"></div>
-<script type="text/javascript" src="../assets/color/getCanvasPixel.js"></script>
 ```
 
 ```css
@@ -36,39 +35,28 @@ let pixels;
 let i = 0;
 let R, G, B;
 
-let sat, lightness, pos, w, v, l, increase, reduce;
-let satRange = width / 6;
+let Hue, Saturation, Value;
 
 el.width = width;
 el.height = height;
+
+var colorUtil = require('../assets/color/colorUtil')
 
 imageData = context.createImageData(width, height);
 pixels = imageData.data;
 
 for (let y = 0; y < height; y++) {
   for (let x = 0; x < width; x++, i += 4) {
-    lightness =  y / height          // 亮度
-    sat = (x % satRange) / satRange  // 饱和度 0~1
-    pos = Math.floor(x / satRange)   // 色相区域
+    Value = 1               // 亮度
+    Hue = x                 // 色调
+    Saturation = 1 - y / height // 饱和度
 
-    w = 255 * sat               // 颜色加深
-    v = 255 * (1 - sat)         // 颜色变浅
-    l = 255 * lightness
-
-    increase = v * lightness // 加色
-    reduce   = w * lightness   // 减色
-
-    w = w + increase
-    v = v + reduce
-
-    R = [255, v,   l,   l,   w,   255][pos]
-    G = [l,   l,   w,   255, 255, v  ][pos]
-    B = [w,   255, 255, v,   l,   l  ][pos]
-
-    pixels[i] = R
-    pixels[i + 1] = G
-    pixels[i + 2] = B
-    pixels[i + 3] = 255
+    var RGB = colorUtil.rgbFromHsv(Hue, Saturation, Value);
+    
+    pixels[i + 0] = RGB.R
+    pixels[i + 1] = RGB.G
+    pixels[i + 2] = RGB.B
+    pixels[i + 3] = 0xFF
   }
 }
 
@@ -77,6 +65,7 @@ context.putImageData(imageData, 0, 0);
 const hexPicker = document.querySelector('#hex');
 const rgbPicker = document.querySelector('#rgb');
 
+let getCanvasPixel = require('../assets/color/getCanvasPixel')
 // 绑定获取面板颜色事件
 getCanvasPixel('#panel', data => {
   hexPicker.style.backgroundColor = data.hex;

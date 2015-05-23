@@ -4,7 +4,6 @@
 <canvas id="panel"></canvas>
 <div id="hex" class="colorPicker"></div>
 <div id="rgb" class="colorPicker"></div>
-<script type="text/javascript" src="../assets/color/getCanvasPixel.js"></script>
 ```
 
 ```css
@@ -62,6 +61,8 @@ context.putImageData(imageData, 0, 0);
 
 const hexPicker = document.querySelector('#hex');
 const rgbPicker = document.querySelector('#rgb');
+
+let getCanvasPixel = require('../assets/color/getCanvasPixel')
 
 // 绑定获取面板颜色事件
 getCanvasPixel('#panel', data => {
