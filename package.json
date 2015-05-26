@@ -32,6 +32,7 @@
     "highlight.js": "^8.5.0",
     "marked": "^0.3.3",
     "pinyin": "^2.4.2",
+    "sha1": "~1.1.0",
     "through2": "^0.6.5",
     "vinyl": "^0.4.6",
     "vinyl-named": "^1.1.0",
