@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title> ColorSphere 色球背景效果</title>
+  <link rel="stylesheet" type="text/css" href="../assets/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../assets/example.css">
+  <link rel="stylesheet" type="text/css" href="../assets/highlight/monokai_sublime.css">
+</head>
+<body>
+  <div class="main-body container-fluid">
+  <h1>ColorSphere 色球背景效果<a name="colorsphere-se-qiu-bei-jing-xiao-guo" class="anchor" href="#colorsphere-se-qiu-bei-jing-xiao-guo"><span class="header-link">#</span></a></h1><blockquote>
+<p><a href="https://sketch.io/" title="null">https://sketch.io/</a></p>
+</blockquote>
+
+<footer></footer>
+<div class="highlight"><pre class="hljs"><span class="code-type">html</span><code class="html"><span class="hljs-tag">&lt;<span class="hljs-title">footer</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">footer</span>&gt;</span></code></pre></div>
+<style>footer{
+  width: 100%;
+  height: 300px;
+  position: relative;
+}</style>
+<div class="highlight"><pre class="hljs"><span class="code-type">css</span><code class="css"><span class="hljs-tag">footer</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">300px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
+}</span></code></pre></div>
+<!-- webpack bundle: color-sphere-background-627ffb75a0.js -->
+<script src="color-sphere-background-627ffb75a0.js"></script>
+<div class="highlight"><pre class="hljs"><span class="code-type"><a href="color-sphere-background-627ffb75a0.js">js</a></span><code class="js"><span class="hljs-keyword">var</span> getCoord = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../global/getCoord'</span>)
+<span class="hljs-comment">// see https://sketch.io/</span>
+<span class="hljs-keyword">var</span> ColorSphereBackground = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params)</span> </span>{
+  <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
+  <span class="hljs-comment">///</span>
+  <span class="hljs-keyword">this</span>.create = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params)</span> </span>{
+    params = params || {};
+    <span class="hljs-keyword">var</span> element = params.element;
+    params.x = params.x || <span class="hljs-number">0</span>;
+    params.y = params.y || <span class="hljs-number">0</span>;
+    params.width = params.width || <span class="hljs-built_in">Math</span>.max(<span class="hljs-built_in">window</span>.innerWidth, element.offsetWidth);
+    params.height = params.height || element.offsetHeight || <span class="hljs-built_in">window</span>.innerHeight;
+    <span class="hljs-comment">///</span>
+    <span class="hljs-keyword">var</span> canvas = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"canvas"</span>);
+    <span class="hljs-keyword">var</span> ctx = canvas.getContext(<span class="hljs-string">"2d"</span>);
+    canvas.style.cssText = <span class="hljs-string">"position: absolute; left: 0; top: 0; opacity: 1; z-index: 0"</span>;
+    canvas.style.width = params.width + <span class="hljs-string">"px"</span>;
+    canvas.style.height = params.height + <span class="hljs-string">"px"</span>;
+    element.appendChild(canvas);
+    <span class="hljs-comment">///</span>
+    <span class="hljs-keyword">var</span> theSphere;
+    <span class="hljs-keyword">var</span> px = <span class="hljs-built_in">window</span>.innerWidth / <span class="hljs-number">2.0</span>;
+    <span class="hljs-keyword">var</span> py = <span class="hljs-built_in">window</span>.innerHeight / <span class="hljs-number">2.0</span>;
+    <span class="hljs-keyword">var</span> onMouseMove = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(event)</span> </span>{
+      ctx.drawImage(theSphere, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+      <span class="hljs-keyword">if</span> (event) {
+        <span class="hljs-keyword">var</span> coords = getCoord(event);
+        coords.x -= <span class="hljs-built_in">document</span>.body.scrollLeft;
+        coords.y -= <span class="hljs-built_in">document</span>.body.scrollTop;
+        px = coords.x;
+        py = coords.y;
+      } <span class="hljs-keyword">else</span> { <span class="hljs-comment">// </span>
+        <span class="hljs-keyword">var</span> coords = { x: px, y: py };
+      }
+      <span class="hljs-comment">//</span>
+      <span class="hljs-keyword">var</span> x = <span class="hljs-built_in">Math</span>.max(<span class="hljs-number">0.1</span>,coords.x / <span class="hljs-built_in">window</span>.innerWidth) * <span class="hljs-number">255</span> - <span class="hljs-number">127</span>; <span class="hljs-comment">// grab mouse pixel coords, center at midpoint</span>
+      <span class="hljs-keyword">var</span> y = <span class="hljs-built_in">Math</span>.max(<span class="hljs-number">0.4</span>,coords.y / <span class="hljs-built_in">window</span>.innerHeight) * <span class="hljs-number">255</span> - <span class="hljs-number">127</span>;
+      <span class="hljs-keyword">var</span> imageData = ctx.getImageData(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, canvas.width, canvas.height); <span class="hljs-comment">// get image data</span>
+      <span class="hljs-keyword">var</span> data = imageData.data;
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> n = <span class="hljs-number">0</span>, length = data.length; n &lt; length; n += <span class="hljs-number">4</span>) {
+        data[n] = data[n] + x - y; <span class="hljs-comment">// red (control left)</span>
+        data[n + <span class="hljs-number">1</span>] = data[n + <span class="hljs-number">1</span>] - x - y; <span class="hljs-comment">// green (control right)</span>
+        data[n + <span class="hljs-number">2</span>] = data[n + <span class="hljs-number">2</span>] + y + y; <span class="hljs-comment">// blue (control down)</span>
+      }
+      ctx.putImageData(imageData, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    };
+    <span class="hljs-comment">//</span>
+    <span class="hljs-keyword">var</span> percent = <span class="hljs-number">1</span> - <span class="hljs-built_in">document</span>.body.scrollTop / <span class="hljs-built_in">document</span>.body.scrollHeight;
+    ctx.drawImage(theSphere = that.sphere(params, canvas, percent), <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    <span class="hljs-comment">///   </span>
+    <span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">"mousemove"</span>, onMouseMove);
+    <span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">"scroll"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
+      <span class="hljs-keyword">var</span> percent = <span class="hljs-number">1</span> - <span class="hljs-built_in">document</span>.body.scrollTop / <span class="hljs-built_in">document</span>.body.scrollHeight;
+      ctx.drawImage(theSphere = that.sphere(params, canvas, percent), <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+      onMouseMove();
+    });
+    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">"resize"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+      canvas.style.width = <span class="hljs-built_in">Math</span>.max(<span class="hljs-built_in">window</span>.innerWidth, element.offsetWidth) + <span class="hljs-string">"px"</span>;
+      canvas.style.height = params.height + <span class="hljs-string">"px"</span>;
+      ctx.drawImage(theSphere = that.sphere(params, canvas, percent), <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
+    });
+  };
+  <span class="hljs-comment">///</span>
+  <span class="hljs-keyword">this</span>.sphere = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(params, canvas, top)</span> </span>{ 
+    <span class="hljs-comment">// create Sphere image, and apply to &lt;canvas&gt;</span>
+    <span class="hljs-keyword">var</span> canvas1 = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"canvas"</span>);
+    <span class="hljs-keyword">var</span> ctx = canvas1.getContext(<span class="hljs-string">"2d"</span>);
+    <span class="hljs-keyword">var</span> w = <span class="hljs-number">50</span>;
+    <span class="hljs-keyword">var</span> left = params.x - w / <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">var</span> top = top * params.y - w;
+    canvas.width = canvas1.width = w * <span class="hljs-built_in">window</span>.innerWidth / <span class="hljs-built_in">window</span>.innerHeight;
+    canvas.height = canvas1.height = w;
+    ctx.fillRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-built_in">window</span>.innerWidth, <span class="hljs-built_in">window</span>.innerHeight);
+    <span class="hljs-comment">///</span>
+    <span class="hljs-keyword">var</span> n = <span class="hljs-number">360</span>; <span class="hljs-keyword">while</span>(n--) { <span class="hljs-comment">// go through hues</span>
+      <span class="hljs-keyword">var</span> x = left + w;
+      <span class="hljs-keyword">var</span> y = top + w*<span class="hljs-number">2</span>;
+      <span class="hljs-keyword">var</span> g = ctx.createLinearGradient(x, top, x, y);
+      g.addColorStop(<span class="hljs-number">0</span>, <span class="hljs-string">"rgba(0,0,0,0)"</span>);
+      g.addColorStop(.<span class="hljs-number">5</span>, <span class="hljs-string">"hsl("</span>+((n + <span class="hljs-number">60</span>) % <span class="hljs-number">360</span>)+<span class="hljs-string">",100%,50%)"</span>);
+      g.addColorStop(<span class="hljs-number">1</span>, <span class="hljs-string">"#FFF"</span>);
+      ctx.beginPath(); <span class="hljs-comment">// draw triangle</span>
+      ctx.moveTo(x, top);
+      ctx.lineTo(x, y);
+      ctx.lineTo(x + <span class="hljs-number">2</span>, y);
+      ctx.lineTo(x + <span class="hljs-number">5</span>, top);
+      ctx.fillStyle = g; <span class="hljs-comment">// apply gradient</span>
+      ctx.fill();
+      ctx.translate(x, y); <span class="hljs-comment">// rotate + translate into position</span>
+      ctx.rotate((<span class="hljs-number">1</span> / <span class="hljs-number">360</span>) * <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">2</span>);
+      ctx.translate(-x, -y);
+    }
+    <span class="hljs-keyword">return</span> canvas1;
+  };
+  <span class="hljs-comment">///</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> n = <span class="hljs-number">0</span>; n &lt; params.length; n ++) {
+    <span class="hljs-keyword">this</span>.create(params[n]);
+  }
+};
+
+<span class="hljs-keyword">new</span> ColorSphereBackground([{
+  element: <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">"footer"</span>)
+}]);</code></pre></div>
+  </div>
+  <a href="https://github.com/noyobo/labs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+</body>
+</html>

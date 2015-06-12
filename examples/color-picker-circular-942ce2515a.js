@@ -68,8 +68,8 @@
 	    G = undefined,
 	    B = undefined;
 
-	var ColorUtil = __webpack_require__(5);
-	var getCanvasPixel = __webpack_require__(6);
+	var ColorUtil = __webpack_require__(7);
+	var getCanvasPixel = __webpack_require__(8);
 
 	el.width = width;
 	el.height = height;
@@ -119,7 +119,9 @@
 /* 2 */,
 /* 3 */,
 /* 4 */,
-/* 5 */
+/* 5 */,
+/* 6 */,
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -209,12 +211,12 @@
 	};
 
 /***/ },
-/* 6 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var colorUtil = __webpack_require__(5);
+	var colorUtil = __webpack_require__(7);
 
 	module.exports = function getCanvasPixel(elem, callback) {
 	  var canvasElem = document.querySelector(elem);

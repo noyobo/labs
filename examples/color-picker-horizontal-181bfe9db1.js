@@ -72,7 +72,7 @@
 	el.width = width;
 	el.height = height;
 
-	var colorUtil = __webpack_require__(5);
+	var colorUtil = __webpack_require__(7);
 
 	imageData = context.createImageData(width, height);
 	pixels = imageData.data;
@@ -97,7 +97,7 @@
 	var hexPicker = document.querySelector('#hex');
 	var rgbPicker = document.querySelector('#rgb');
 
-	var getCanvasPixel = __webpack_require__(6);
+	var getCanvasPixel = __webpack_require__(8);
 	// 绑定获取面板颜色事件
 	getCanvasPixel('#panel', function (data) {
 	  hexPicker.style.backgroundColor = data.hex;
@@ -111,7 +111,9 @@
 /***/ },
 /* 3 */,
 /* 4 */,
-/* 5 */
+/* 5 */,
+/* 6 */,
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -201,12 +203,12 @@
 	};
 
 /***/ },
-/* 6 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var colorUtil = __webpack_require__(5);
+	var colorUtil = __webpack_require__(7);
 
 	module.exports = function getCanvasPixel(elem, callback) {
 	  var canvasElem = document.querySelector(elem);
