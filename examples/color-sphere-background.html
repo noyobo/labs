@@ -19,15 +19,35 @@
   width: 100%;
   height: 300px;
   position: relative;
+}
+footer:after {
+  content: " ";
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAQAAAAD+Fb1AAAAFElEQVR4AWNgEAJCEIBQCI4QnAIACfwAkfjnWwAAAAAASUVORK5CYII=');
+  width: 100%;
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
 }</style>
 <div class="highlight"><pre class="hljs"><span class="code-type">css</span><code class="css"><span class="hljs-tag">footer</span><span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">300px</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
-}</span></code></pre></div>
-<!-- webpack bundle: color-sphere-background-627ffb75a0.js -->
-<script src="color-sphere-background-627ffb75a0.js"></script>
-<div class="highlight"><pre class="hljs"><span class="code-type"><a href="color-sphere-background-627ffb75a0.js">js</a></span><code class="js"><span class="hljs-keyword">var</span> getCoord = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../global/getCoord'</span>)
+}</span>
+<span class="hljs-rule"><span class="hljs-attribute">footer</span>:<span class="hljs-value">after {
+  content: <span class="hljs-string">" "</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-function">url</span>(<span class="hljs-string">'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAQAAAAD+Fb1AAAAFElEQVR4AWNgEAJCEIBQCI4QnAIACfwAkfjnWwAAAAAASUVORK5CYII='</span>)</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> inherit</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">z-index</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+}</code></pre></div>
+<!-- webpack bundle: color-sphere-background-59eb911ee3.js -->
+<script src="color-sphere-background-59eb911ee3.js"></script>
+<div class="highlight"><pre class="hljs"><span class="code-type"><a href="color-sphere-background-59eb911ee3.js">js</a></span><code class="js"><span class="hljs-keyword">var</span> getCoord = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../global/getCoord'</span>)
 <span class="hljs-comment">// see https://sketch.io/</span>
 <span class="hljs-keyword">var</span> ColorSphereBackground = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params)</span> </span>{
   <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
@@ -37,7 +57,7 @@
     <span class="hljs-keyword">var</span> element = params.element;
     params.x = params.x || <span class="hljs-number">0</span>;
     params.y = params.y || <span class="hljs-number">0</span>;
-    params.width = params.width || <span class="hljs-built_in">Math</span>.max(<span class="hljs-built_in">window</span>.innerWidth, element.offsetWidth);
+    params.width = params.width || <span class="hljs-built_in">Math</span>.min(<span class="hljs-built_in">window</span>.innerWidth, element.offsetWidth);
     params.height = params.height || element.offsetHeight || <span class="hljs-built_in">window</span>.innerHeight;
     <span class="hljs-comment">///</span>
     <span class="hljs-keyword">var</span> canvas = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"canvas"</span>);
@@ -84,7 +104,7 @@
       onMouseMove();
     });
     <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">"resize"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-      canvas.style.width = <span class="hljs-built_in">Math</span>.max(<span class="hljs-built_in">window</span>.innerWidth, element.offsetWidth) + <span class="hljs-string">"px"</span>;
+      canvas.style.width = <span class="hljs-built_in">Math</span>.min(<span class="hljs-built_in">window</span>.innerWidth, element.offsetWidth) + <span class="hljs-string">"px"</span>;
       canvas.style.height = params.height + <span class="hljs-string">"px"</span>;
       ctx.drawImage(theSphere = that.sphere(params, canvas, percent), <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
     });

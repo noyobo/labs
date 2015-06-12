@@ -65,7 +65,7 @@
 	    var element = params.element;
 	    params.x = params.x || 0;
 	    params.y = params.y || 0;
-	    params.width = params.width || Math.max(window.innerWidth, element.offsetWidth);
+	    params.width = params.width || Math.min(window.innerWidth, element.offsetWidth);
 	    params.height = params.height || element.offsetHeight || window.innerHeight;
 	    ///
 	    var canvas = document.createElement("canvas");
@@ -113,7 +113,7 @@
 	      onMouseMove();
 	    });
 	    window.addEventListener("resize", function () {
-	      canvas.style.width = Math.max(window.innerWidth, element.offsetWidth) + "px";
+	      canvas.style.width = Math.min(window.innerWidth, element.offsetWidth) + "px";
 	      canvas.style.height = params.height + "px";
 	      ctx.drawImage(theSphere = that.sphere(params, canvas, percent), 0, 0);
 	    });
