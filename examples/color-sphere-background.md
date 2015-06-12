@@ -12,6 +12,16 @@ footer{
   height: 300px;
   position: relative;
 }
+footer:after {
+  content: " ";
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAQAAAAD+Fb1AAAAFElEQVR4AWNgEAJCEIBQCI4QnAIACfwAkfjnWwAAAAAASUVORK5CYII=');
+  width: 100%;
+  height: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
 ```
 
 ```js
@@ -25,7 +35,7 @@ var ColorSphereBackground = function(params) {
     var element = params.element;
     params.x = params.x || 0;
     params.y = params.y || 0;
-    params.width = params.width || Math.max(window.innerWidth, element.offsetWidth);
+    params.width = params.width || Math.min(window.innerWidth, element.offsetWidth);
     params.height = params.height || element.offsetHeight || window.innerHeight;
     ///
     var canvas = document.createElement("canvas");
@@ -72,7 +82,7 @@ var ColorSphereBackground = function(params) {
       onMouseMove();
     });
     window.addEventListener("resize", function() {
-      canvas.style.width = Math.max(window.innerWidth, element.offsetWidth) + "px";
+      canvas.style.width = Math.min(window.innerWidth, element.offsetWidth) + "px";
       canvas.style.height = params.height + "px";
       ctx.drawImage(theSphere = that.sphere(params, canvas, percent), 0, 0)
     });
