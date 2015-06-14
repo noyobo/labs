@@ -2,13 +2,14 @@
 
 var gulp = require('gulp');
 var del = require('del');
-var rename = require('gulp-rename');
+// var rename = require('gulp-rename');
 var copy = require('gulp-copy');
 var watch = require('gulp-watch');
 var webpack = require('gulp-webpack');
 var named = require('vinyl-named');
 var through2 = require('through2');
 var babel = require('babel-core');
+
 var colors = require('colors-mini');
 var markdown = require('./lib/markdown.js');
 var render = require('./lib/xtpl.js');
@@ -53,7 +54,7 @@ gulp.task('md', function() {
     })
 })
 
-gulp.task('webpack', ['md'], function(done) {
+gulp.task('webpack', ['md'], function() {
   return gulp
     .src(distDir + '/examples/*.js')
     .pipe(named())
