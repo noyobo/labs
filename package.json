@@ -5,8 +5,8 @@
   "description": "labs",
   "main": "index.js",
   "scripts": {
-    "test": "node --harmony ./a.js",
-    "site": "node --harmony ./node_modules/.bin/gulp",
+    "test": "node ./a.js",
+    "site": "node ./node_modules/.bin/gulp",
     "ghpages": "npm run site && npm run deploy",
     "deploy": "./node_modules/gh-pages-cli/bin/gh-pages -d _site -b gh-pages"
   },
