@@ -8,16 +8,16 @@
 ```css
 .wrap{
   padding: 20px;
-}
-.wrap div {
-  height: 150px;
-  width: 150px;
-  border-radius: 8px;
-  border: 1px dashed #999;
-  background-color: #fff;
-  margin-top: 20px;
-}
-.wrap div:nth-child(2n){
-  background-color: #eee;
+  div {
+    height: 150px;
+    width: 150px;
+    border-radius: 8px;
+    border: 1px dashed #999;
+    background-color: #fff;
+    margin-top: 20px;
+    &:nth-child(2n){
+      background-color: #eee;
+    }
+  }
 }
 ```
