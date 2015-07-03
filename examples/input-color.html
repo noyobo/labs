@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Input Color Object</title>
+  <link rel="stylesheet" type="text/css" href="../assets/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../assets/example.css">
+  <link rel="stylesheet" type="text/css" href="../assets/highlight/monokai_sublime.css">
+</head>
+<body>
+  <div class="main-body container-fluid">
+  <h1>Input Color Object<a name="input-color-object" class="anchor" href="#input-color-object"><span class="header-link">#</span></a></h1>
+<div style="padding:20px;">
+  <input id="color" type="color" value="#FF0000" />
+  <input id="outer" type="text" value="#FF0000">
+</div>
+<div class="highlight"><pre class="hljs"><span class="code-type">html</span><code class="html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"padding:20px;"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"color"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"color"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"#FF0000"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"outer"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"#FF0000"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre></div>
+<!-- webpack bundle: input-color-229c19151a.js -->
+<script src="input-color-229c19151a.js"></script>
+<div class="highlight"><pre class="hljs"><span class="code-type"><a href="input-color-229c19151a.js">js</a></span><code class="js"><span class="hljs-keyword">var</span> color = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'color'</span>);
+<span class="hljs-keyword">var</span> outer = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'outer'</span>);
+
+color.addEventListener(<span class="hljs-string">'change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(event)</span></span>{
+  outer.value = color.value.toUpperCase();
+})</code></pre></div>
+  </div>
+</body>
+</html>

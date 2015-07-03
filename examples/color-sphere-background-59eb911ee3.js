@@ -55,7 +55,7 @@
 
 	"use strict";
 
-	var getCoord = __webpack_require__(6);
+	var getCoord = __webpack_require__(7);
 	// see https://sketch.io/
 	var ColorSphereBackground = function ColorSphereBackground(params) {
 	  var that = this;
@@ -164,7 +164,8 @@
 /***/ },
 /* 4 */,
 /* 5 */,
-/* 6 */
+/* 6 */,
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

@@ -45,37 +45,21 @@
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(6);
+	module.exports = __webpack_require__(5);
 
 
 /***/ },
 
-/***/ 6:
+/***/ 5:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var body = document.querySelector('body');
-	var out = document.querySelector('.out');
+	var color = document.getElementById('color');
+	var outer = document.getElementById('outer');
 
-	var keyArr = ['metaKey', 'altKey', 'ctrlKey', 'shiftKey'];
-
-	body.addEventListener('keydown', function (event) {
-	  event.preventDefault();
-
-	  var keyCombo = [];
-
-	  keyArr.forEach(function (key) {
-	    if (event[key] === true) {
-	      keyCombo.push('<code>' + key.substr(0, key.length - 3) + '</code>');
-	    }
-	  });
-
-	  var keyCode = event.which || event.keyCode;
-
-	  keyCombo.push('<code>' + String.fromCharCode(keyCode) + '(' + keyCode + ')' + '</code>');
-
-	  out.innerHTML = keyCombo.join(' + ');
+	color.addEventListener('change', function (event) {
+	  outer.value = color.value.toUpperCase();
 	});
 
 /***/ }
