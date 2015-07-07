@@ -10,7 +10,7 @@
 <div id="rgb" class="colorPicker"></div>
 ```
 
-```css
+```style
 canvas {cursor: crosshair;}
 .colorPicker {
   color: #fff;

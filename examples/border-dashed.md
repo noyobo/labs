@@ -5,7 +5,7 @@
 </div>
 ```
 
-```css
+```style
 .wrap{
   padding: 20px;
   div {

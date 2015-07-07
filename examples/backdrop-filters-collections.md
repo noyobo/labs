@@ -16,7 +16,7 @@
 </div>
 ```
 
-```css
+```style
 .drop{
   width: 100%;
   height: 200px;

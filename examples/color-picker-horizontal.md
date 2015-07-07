@@ -10,7 +10,7 @@
 <div id="rgb" class="colorPicker"></div>
 ```
 
-```css
+```style
 canvas {cursor: crosshair;}
 .canvas-warp {border: 2px solid #000; float:left; font-size:0; border-radius:2px;}
 .colorPicker {

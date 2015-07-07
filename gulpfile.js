@@ -70,6 +70,14 @@ gulp.task('assets', function() {
     }))
 })
 
+gulp.task('img', function() {
+  return gulp
+    .src(['./src/image/**/*.*'])
+    .pipe(copy(distDir, {
+      prefix: 1
+    }))
+})
+
 var es6ToEs5 = through2.obj(function(file, env, done) {
   var code = String(file.contents);
   var es5 = babel.transform(code).code;
@@ -103,5 +111,5 @@ gulp.task('watch', function() {
 })
 
 gulp.task('default', ['del'], function() {
-  gulp.start(['webpack', 'assets', 'js'])
+  gulp.start(['webpack', 'assets', 'js' , 'img'])
 })
