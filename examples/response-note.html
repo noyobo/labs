@@ -4,14 +4,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> 响应式布局笔记</title>
+  <title> mobile response 响应式布局笔记</title>
   <link rel="stylesheet" type="text/css" href="../assets/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../assets/example.css">
   <link rel="stylesheet" type="text/css" href="../assets/highlight/monokai_sublime.css">
 </head>
 <body>
   <div class="main-body container-fluid">
-  <h1>响应式布局笔记<a name="xiang-ying-shi-bu-ju-bi-ji" class="anchor" href="#xiang-ying-shi-bu-ju-bi-ji"><span class="header-link">#</span></a></h1>
+  <h1>mobile response 响应式布局笔记<a name="mobile-response-xiang-ying-shi-bu-ju-bi-ji" class="anchor" href="#mobile-response-xiang-ying-shi-bu-ju-bi-ji"><span class="header-link">#</span></a></h1>
 <p class="f12">我是12PX</p>
 <p class="f14">我是14PX</p>
 <p class="f16">我是16PX</p>
@@ -123,19 +123,19 @@ p {
 })(<span class="hljs-built_in">document</span>, <span class="hljs-built_in">window</span>);</code></pre></div><h2>background-image response<a name="background-image-response" class="anchor" href="#background-image-response"><span class="header-link">#</span></a></h2><blockquote>
 <p><a href="http://bjango.com/articles/min-device-pixel-ratio/" title="null">http://bjango.com/articles/min-device-pixel-ratio/</a></p>
 </blockquote>
-<div class="highlight"><pre class="hljs"><span class="code-type">css</span><code class="css">.css {
-  background - image: url(img_1x.png);
-}
+<div class="highlight"><pre class="hljs"><span class="code-type">css</span><code class="css"><span class="hljs-class">.css</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">background-image</span>:<span class="hljs-value"> <span class="hljs-function">url</span>(img@<span class="hljs-number">1</span>x.png)</span></span>;
+}</span>
 
-@media only screen and(-webkit-min-device-pixel-ratio: 2) {
-  .css {
-    background - image: url(img_2x.png);
-  }
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> only screen <span class="hljs-function">and</span>(-webkit-min-device-pixel-ratio: <span class="hljs-number">2</span>) </span>{
+  <span class="hljs-class">.css</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background-image</span>:<span class="hljs-value"> <span class="hljs-function">url</span>(img@<span class="hljs-number">2</span>x.png)</span></span>;
+  }</span>
 }
-@media only screen and(-webkit-min-device-pixel-ratio: 3) {
-  .css {
-    background - image: url(img_3x.png);
-  }
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> only screen <span class="hljs-function">and</span>(-webkit-min-device-pixel-ratio: <span class="hljs-number">3</span>) </span>{
+  <span class="hljs-class">.css</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background-image</span>:<span class="hljs-value"> <span class="hljs-function">url</span>(img@<span class="hljs-number">3</span>x.png)</span></span>;
+  }</span>
 }</code></pre></div><h2>reference<a name="reference" class="anchor" href="#reference"><span class="header-link">#</span></a></h2><ul>
 <li><a href="http://www.zhangxinxu.com/wordpress/2012/08/window-devicepixelratio/" title="null">http://www.zhangxinxu.com/wordpress/2012/08/window-devicepixelratio/</a></li>
 </ul>
