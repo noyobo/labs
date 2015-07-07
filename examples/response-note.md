@@ -1,4 +1,4 @@
-# 响应式布局笔记
+# mobile response 响应式布局笔记
 
 ```html
 <p class="f12">我是12PX</p>
@@ -65,17 +65,17 @@ p{border: 1px solid #eee; padding: 0.1rem;}
 
 ```css
 .css {
-  background - image: url(img_1x.png);
+  background-image: url(img@1x.png);
 }
 
 @media only screen and(-webkit-min-device-pixel-ratio: 2) {
   .css {
-    background - image: url(img_2x.png);
+    background-image: url(img@2x.png);
   }
 }
 @media only screen and(-webkit-min-device-pixel-ratio: 3) {
   .css {
-    background - image: url(img_3x.png);
+    background-image: url(img@3x.png);
   }
 }
 
