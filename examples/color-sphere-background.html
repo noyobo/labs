@@ -20,8 +20,7 @@
 <style>footer {
   width: 100%;
   height: 300px;
-  position: relative;
-}
+  position: relative; }
 
 footer:after {
   content: " ";
@@ -31,14 +30,12 @@ footer:after {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 0;
-}
+  z-index: 0; }
 </style>
-<div class="highlight"><pre class="hljs"><span class="code-type">css</span><code class="css"><span class="hljs-tag">footer</span> <span class="hljs-rules">{
+<div class="highlight"><pre class="hljs"><span class="code-type">style</span><code class="style"><span class="hljs-tag">footer</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">300px</span></span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
-}</span>
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>; }</span>
 
 <span class="hljs-rule"><span class="hljs-attribute">footer</span>:<span class="hljs-value">after {
   content: <span class="hljs-string">" "</span></span></span>;
@@ -48,17 +45,16 @@ footer:after {
   <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">z-index</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
-}
+  <span class="hljs-rule"><span class="hljs-attribute">z-index</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>; }
 </code></pre></div>
 <!-- webpack bundle: color-sphere-background-59eb911ee3.js -->
 <script src="color-sphere-background-59eb911ee3.js"></script>
 <div class="highlight"><pre class="hljs"><span class="code-type"><a href="color-sphere-background-59eb911ee3.js">js</a></span><code class="js"><span class="hljs-keyword">var</span> getCoord = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../global/getCoord'</span>)
 <span class="hljs-comment">// see https://sketch.io/</span>
-<span class="hljs-keyword">var</span> ColorSphereBackground = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params)</span> </span>{
+<span class="hljs-keyword">var</span> ColorSphereBackground = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">params</span>) </span>{
   <span class="hljs-keyword">var</span> that = <span class="hljs-keyword">this</span>;
   <span class="hljs-comment">///</span>
-  <span class="hljs-keyword">this</span>.create = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(params)</span> </span>{
+  <span class="hljs-keyword">this</span>.create = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">params</span>) </span>{
     params = params || {};
     <span class="hljs-keyword">var</span> element = params.element;
     params.x = params.x || <span class="hljs-number">0</span>;
@@ -76,7 +72,7 @@ footer:after {
     <span class="hljs-keyword">var</span> theSphere;
     <span class="hljs-keyword">var</span> px = <span class="hljs-built_in">window</span>.innerWidth / <span class="hljs-number">2.0</span>;
     <span class="hljs-keyword">var</span> py = <span class="hljs-built_in">window</span>.innerHeight / <span class="hljs-number">2.0</span>;
-    <span class="hljs-keyword">var</span> onMouseMove = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(event)</span> </span>{
+    <span class="hljs-keyword">var</span> onMouseMove = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) </span>{
       ctx.drawImage(theSphere, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
       <span class="hljs-keyword">if</span> (event) {
         <span class="hljs-keyword">var</span> coords = getCoord(event);
@@ -104,19 +100,19 @@ footer:after {
     ctx.drawImage(theSphere = that.sphere(params, canvas, percent), <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
     <span class="hljs-comment">///   </span>
     <span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">"mousemove"</span>, onMouseMove);
-    <span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">"scroll"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
+    <span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">"scroll"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
       <span class="hljs-keyword">var</span> percent = <span class="hljs-number">1</span> - <span class="hljs-built_in">document</span>.body.scrollTop / <span class="hljs-built_in">document</span>.body.scrollHeight;
       ctx.drawImage(theSphere = that.sphere(params, canvas, percent), <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
       onMouseMove();
     });
-    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">"resize"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">"resize"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
       canvas.style.width = <span class="hljs-built_in">Math</span>.min(<span class="hljs-built_in">window</span>.innerWidth, element.offsetWidth) + <span class="hljs-string">"px"</span>;
       canvas.style.height = params.height + <span class="hljs-string">"px"</span>;
       ctx.drawImage(theSphere = that.sphere(params, canvas, percent), <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
     });
   };
   <span class="hljs-comment">///</span>
-  <span class="hljs-keyword">this</span>.sphere = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(params, canvas, top)</span> </span>{ 
+  <span class="hljs-keyword">this</span>.sphere = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">params, canvas, top</span>) </span>{ 
     <span class="hljs-comment">// create Sphere image, and apply to &lt;canvas&gt;</span>
     <span class="hljs-keyword">var</span> canvas1 = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">"canvas"</span>);
     <span class="hljs-keyword">var</span> ctx = canvas1.getContext(<span class="hljs-string">"2d"</span>);

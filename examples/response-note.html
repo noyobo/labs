@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> 响应式布局笔记</title>
+  <link rel="stylesheet" type="text/css" href="../assets/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../assets/example.css">
+  <link rel="stylesheet" type="text/css" href="../assets/highlight/monokai_sublime.css">
+</head>
+<body>
+  <div class="main-body container-fluid">
+  <h1>响应式布局笔记<a name="xiang-ying-shi-bu-ju-bi-ji" class="anchor" href="#xiang-ying-shi-bu-ju-bi-ji"><span class="header-link">#</span></a></h1>
+<p class="f12">我是12PX</p>
+<p class="f14">我是14PX</p>
+<p class="f16">我是16PX</p>
+<p class="f24">我是24PX</p>
+<p class="f30">我是30PX</p>
+<p class="f36">我是36PX</p>
+<div class="highlight"><pre class="hljs"><span class="code-type">html</span><code class="html"><span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"f12"</span>&gt;</span>我是12PX<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"f14"</span>&gt;</span>我是14PX<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"f16"</span>&gt;</span>我是16PX<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"f24"</span>&gt;</span>我是24PX<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"f30"</span>&gt;</span>我是30PX<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"f36"</span>&gt;</span>我是36PX<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span></code></pre></div><h2>CSS media query<a name="css-media-query" class="anchor" href="#css-media-query"><span class="header-link">#</span></a></h2><p>换算公式: <code>deviceWidth / 320 * 100px</code></p>
+<blockquote>
+<p>tools: <a href="https://offroadcode.com/prototypes/rem-calculator/" title="null">https://offroadcode.com/prototypes/rem-calculator/</a></p>
+</blockquote>
+
+<style>@charset "UTF-8";
+/* 320px布局 */
+html {
+  font-size: 100px; }
+
+body {
+  font-size: 0.14rem; }
+
+/* iphone 6 */
+@media (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  html {
+    font-size: 117.1875px; } }
+
+/* iphone6 plus */
+@media (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  html {
+    font-size: 129.375px; } }
+
+p {
+  border: 1px solid #eee;
+  padding: 0.1rem; }
+
+.f12 {
+  font-size: 0.12rem; }
+
+.f14 {
+  font-size: 0.14rem; }
+
+.f16 {
+  font-size: 0.16rem; }
+
+.f24 {
+  font-size: 0.24rem; }
+
+.f30 {
+  font-size: 0.30rem; }
+
+.f36 {
+  font-size: 0.36rem; }
+</style>
+<div class="highlight"><pre class="hljs"><span class="code-type">style</span><code class="style"><span class="hljs-at_rule">@<span class="hljs-keyword">charset</span> <span class="hljs-string">"UTF-8"</span></span>;
+<span class="hljs-comment">/* 320px布局 */</span>
+<span class="hljs-tag">html</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>; }</span>
+
+<span class="hljs-tag">body</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">0.14rem</span></span></span>; }</span>
+
+<span class="hljs-comment">/* iphone 6 */</span>
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> (min-device-width: <span class="hljs-number">375px</span>) and (max-device-width: <span class="hljs-number">667px</span>) and (-webkit-min-device-pixel-ratio: <span class="hljs-number">2</span>) </span>{
+  <span class="hljs-tag">html</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">117.1875px</span></span></span>; }</span> }
+
+<span class="hljs-comment">/* iphone6 plus */</span>
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> (min-device-width: <span class="hljs-number">414px</span>) and (max-device-width: <span class="hljs-number">736px</span>) and (-webkit-min-device-pixel-ratio: <span class="hljs-number">3</span>) </span>{
+  <span class="hljs-tag">html</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">129.375px</span></span></span>; }</span> }
+
+<span class="hljs-tag">p</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid <span class="hljs-hexcolor">#eee</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">0.1rem</span></span></span>; }</span>
+
+<span class="hljs-class">.f12</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">0.12rem</span></span></span>; }</span>
+
+<span class="hljs-class">.f14</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">0.14rem</span></span></span>; }</span>
+
+<span class="hljs-class">.f16</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">0.16rem</span></span></span>; }</span>
+
+<span class="hljs-class">.f24</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">0.24rem</span></span></span>; }</span>
+
+<span class="hljs-class">.f30</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">0.30rem</span></span></span>; }</span>
+
+<span class="hljs-class">.f36</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">0.36rem</span></span></span>; }</span>
+</code></pre></div><h2>JavaScript response gist<a name="javascript-response-gist" class="anchor" href="#javascript-response-gist"><span class="header-link">#</span></a></h2><div class="highlight"><pre class="hljs"><span class="code-type">javascript</span><code class="javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">doc, win</span>) </span>{
+    <span class="hljs-keyword">var</span> docEl = doc.documentElement,
+        resizeEvt = <span class="hljs-string">'orientationchange'</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">window</span> ? <span class="hljs-string">'orientationchange'</span> : <span class="hljs-string">'resize'</span>,
+        recalc = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">var</span> clientWidth = docEl.clientWidth;
+            <span class="hljs-keyword">if</span> (!clientWidth) <span class="hljs-keyword">return</span>;
+            docEl.style.fontSize = <span class="hljs-number">100</span> * (clientWidth / <span class="hljs-number">320</span>) + <span class="hljs-string">'px'</span>;
+        };
+
+    <span class="hljs-comment">// Abort if browser does not support addEventListener</span>
+    <span class="hljs-keyword">if</span> (!doc.addEventListener) <span class="hljs-keyword">return</span>;
+    win.addEventListener(resizeEvt, recalc, <span class="hljs-literal">false</span>);
+    doc.addEventListener(<span class="hljs-string">'DOMContentLoaded'</span>, recalc, <span class="hljs-literal">false</span>);
+})(<span class="hljs-built_in">document</span>, <span class="hljs-built_in">window</span>);</code></pre></div><h2>background-image response<a name="background-image-response" class="anchor" href="#background-image-response"><span class="header-link">#</span></a></h2><blockquote>
+<p><a href="http://bjango.com/articles/min-device-pixel-ratio/" title="null">http://bjango.com/articles/min-device-pixel-ratio/</a></p>
+</blockquote>
+<div class="highlight"><pre class="hljs"><span class="code-type">css</span><code class="css">.css {
+  background - image: url(img_1x.png);
+}
+
+@media only screen and(-webkit-min-device-pixel-ratio: 2) {
+  .css {
+    background - image: url(img_2x.png);
+  }
+}
+@media only screen and(-webkit-min-device-pixel-ratio: 3) {
+  .css {
+    background - image: url(img_3x.png);
+  }
+}</code></pre></div><h2>reference<a name="reference" class="anchor" href="#reference"><span class="header-link">#</span></a></h2><ul>
+<li><a href="http://www.zhangxinxu.com/wordpress/2012/08/window-devicepixelratio/" title="null">http://www.zhangxinxu.com/wordpress/2012/08/window-devicepixelratio/</a></li>
+</ul>
+
+  </div>
+</body>
+</html>
